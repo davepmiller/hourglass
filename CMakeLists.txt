@@ -22,7 +22,10 @@ include_directories( include )
 
 aux_source_directory( src SRC_LIST )
 
-add_executable( ${PROJECT_NAME}-test ${SRC_LIST} test/main.cpp )
+add_executable( ${PROJECT_NAME}-test
+    ${SRC_LIST}
+    test/main.cpp
+)
 
 target_compile_options( ${PROJECT_NAME}-test
     PRIVATE

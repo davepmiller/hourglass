@@ -29,28 +29,35 @@ add_executable( ${PROJECT_NAME}-test
 
 target_compile_options( ${PROJECT_NAME}-test
     PRIVATE
-    -std=c++11
-    -Wall
-    -pthread
+        -std=c++11
+        -Wall
+        -pthread
 )
 
-add_library( ${PROJECT_NAME} SHARED ${SRC_LIST} )
+add_library( ${PROJECT_NAME}
+    SHARED
+        ${SRC_LIST}
+)
 
 target_compile_options( ${PROJECT_NAME}
     PRIVATE
-    -std=c++11
-    -Wall
-    -pthread
+        -std=c++11
+        -Wall
+        -pthread
 )
 
 install(
-    TARGETS ${PROJECT_NAME}
-    DESTINATION /usr/local/lib
+    TARGETS
+        ${PROJECT_NAME}
+    DESTINATION
+        /usr/local/lib
 )
 
 file( GLOB INCLUDE include/*.hpp )
 
 install(
-    FILES ${INCLUDE}
-    DESTINATION /usr/local/include/hourglass/
+    FILES
+        ${INCLUDE}
+    DESTINATION
+        /usr/local/include/hourglass/
 )

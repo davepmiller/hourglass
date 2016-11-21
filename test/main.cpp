@@ -8,7 +8,7 @@ struct test_object
 {
     test_object() : count( 0 ) {}
 
-    ~test_object(){ std::cout << "~what()" << std::endl; }
+    ~test_object(){ std::cout << "~test_object()" << std::endl; }
 
     void increment(){ std::cout << ++count << std::endl; }
 
@@ -31,11 +31,11 @@ int main( int, char * [] )
 
     timer.stop();
 
-    hourglass::sleep( hourglass::seconds( 3 ) );
+    hourglass::sleep( hourglass::milliseconds( 3000 ) );
 
     timer.start( 500 );
 
-    hourglass::sleep( hourglass::seconds( 3 ) );
+    hourglass::sleep( hourglass::microseconds( 3000000 ) );
 
     return 0;
 }

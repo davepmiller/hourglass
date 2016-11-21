@@ -6,10 +6,10 @@ find_package( Threads REQUIRED )
 
 include_directories( include )
 
-aux_source_directory( src SRC_LIST )
+aux_source_directory( src SRC )
 
 add_executable( ${PROJECT_NAME}-test
-    ${SRC_LIST}
+    ${SRC}
     test/main.cpp
 )
 
@@ -22,7 +22,7 @@ target_compile_options( ${PROJECT_NAME}-test
 
 add_library( ${PROJECT_NAME}
     SHARED
-        ${SRC_LIST}
+        ${SRC}
 )
 
 target_compile_options( ${PROJECT_NAME}

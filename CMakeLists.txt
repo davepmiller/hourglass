@@ -4,8 +4,6 @@ cmake_minimum_required( VERSION 2.8.12 )
 
 find_package( Threads REQUIRED )
 
-set( CMAKE_CXX_FLAGS "-Wall -std=c++11 -pthread" )
-
 # Compiler-specific C++11 activation.
 if( "${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU" )
     execute_process(
@@ -26,7 +24,21 @@ aux_source_directory( src SRC_LIST )
 
 add_executable( ${PROJECT_NAME}-test ${SRC_LIST} test/main.cpp )
 
+target_compile_options( ${PROJECT_NAME}-test
+    PRIVATE
+    -std=c++11
+    -Wall
+    -pthread
+)
+
 add_library( ${PROJECT_NAME} SHARED ${SRC_LIST} )
+
+target_compile_options( ${PROJECT_NAME}
+    PRIVATE
+    -std=c++11
+    -Wall
+    -pthread
+)
 
 install(
     TARGETS ${PROJECT_NAME}

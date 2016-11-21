@@ -12,6 +12,6 @@ $ make install
 ```
 
 ## Preview
-Run `main.cpp` for a preview of functionality.
+Run `test/main.cpp` executable for a preview of functionality.
 ```
 $ ./hourglass-test

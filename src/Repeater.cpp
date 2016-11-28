@@ -7,11 +7,11 @@
 using namespace hourglass;
 
 
-static void notifyThreadFailure()
+static void notifyThreadFailure( const std::exception & e )
 {
     std::cerr << "Repeater::start() failed - system could not launch "
-                 "thread."
-              << std::endl;
+                 "thread.\n"
+              << e.what() << std::endl;
 }
 
 
@@ -25,15 +25,23 @@ static void joinThread( std::future< void > & future )
 
 
 static void execute(
+        const std::function< void() > & methodToCall,
+        unsigned msFrequency )
+{
+    hourglass::sleep( std::chrono::milliseconds( msFrequency ) );
+
+    methodToCall();
+}
+
+
+static void repeat(
         const std::atomic_bool * repeating,
         const std::function< void() > & methodToCall,
         unsigned msFrequency )
 {
     while( *repeating )
     {
-        hourglass::sleep( std::chrono::milliseconds( msFrequency ) );
-
-        methodToCall();
+        execute( methodToCall, msFrequency );
     }
 }
 
@@ -48,7 +56,7 @@ Repeater::Repeater()
 }
 
 
-void Repeater::setFunction( std::function<void ()> function )
+void Repeater::setFunction( std::function< void() > function )
 {
     _function = function;
 }
@@ -62,14 +70,14 @@ void Repeater::launchAsync( unsigned msFrequency )
 
         _repeaterFuture = std::async(
                     std::launch::async,
-                    execute,
+                    repeat,
                     &_repeating,
                     _function,
                     msFrequency );
     }
-    catch( ... )
+    catch( std::exception & e )
     {
-        notifyThreadFailure();
+        notifyThreadFailure( e );
     }
 }
 

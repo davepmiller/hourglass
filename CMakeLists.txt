@@ -8,6 +8,8 @@ include_directories( include )
 
 aux_source_directory( src SRC )
 
+file( GLOB INCLUDE include/*.hpp )
+
 add_executable( ${PROJECT_NAME}-test
     ${SRC}
     test/main.cpp
@@ -15,9 +17,13 @@ add_executable( ${PROJECT_NAME}-test
 
 target_compile_options( ${PROJECT_NAME}-test
     PRIVATE
+        -pthread
         -std=c++11
         -Wall
-        -pthread
+)
+
+target_link_libraries( ${PROJECT_NAME}-test
+    pthread
 )
 
 add_library( ${PROJECT_NAME}
@@ -27,9 +33,13 @@ add_library( ${PROJECT_NAME}
 
 target_compile_options( ${PROJECT_NAME}
     PRIVATE
+        -pthread
         -std=c++11
         -Wall
-        -pthread
+)
+
+target_link_libraries( ${PROJECT_NAME}
+    pthread
 )
 
 install(
@@ -38,8 +48,6 @@ install(
     DESTINATION
         /usr/local/lib
 )
-
-file( GLOB INCLUDE include/*.hpp )
 
 install(
     FILES

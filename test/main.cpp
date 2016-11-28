@@ -12,8 +12,12 @@ struct test_object
 
     void increment(){ std::cout << ++count << std::endl; }
 
+    void functionToDelay(){
+        std::cout << "delayed call happening" << std::endl; }
+
     int count;
 };
+
 
 int main( int, char * [] )
 {
@@ -21,11 +25,15 @@ int main( int, char * [] )
 
     test_object obj;
 
+    // should see an error here "call connect first"
+    timer.start( 500 );
+
     timer.connect( obj, &test_object::increment );
 
     timer.start( 500 );
 
-    hourglass::Timer::delayedFunctionCall( obj, &test_object::increment, 2 );
+    hourglass::Timer::delayedFunctionCall(
+                obj, &test_object::functionToDelay, 8000 );
 
     hourglass::sleep( hourglass::seconds( 3 ) );
 

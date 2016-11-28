@@ -14,10 +14,10 @@ static void notifyStartFailure()
 }
 
 
-static void launchRepeater( Repeater * repeater, unsigned msFrequency )
+static void launchRepeater( Repeater & repeater, unsigned msFrequency )
 {
-    repeater->isConnected() ?
-                repeater->launchAsync( msFrequency ) : notifyStartFailure();
+    repeater.isConnected() ?
+                repeater.launchAsync( msFrequency ) : notifyStartFailure();
 }
 
 
@@ -38,7 +38,7 @@ Timer::~Timer()
 void Timer::start( unsigned msFrequency )
 {
     _repeater ? launchRepeater(
-                    _repeater.get(), msFrequency ) : notifyStartFailure();
+                    *_repeater.get(), msFrequency ) : notifyStartFailure();
 }
 
 

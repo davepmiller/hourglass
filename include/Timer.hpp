@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "Repeater.hpp"
+#include "Hourglass.hpp"
 
 
 namespace hourglass {
@@ -38,6 +39,15 @@ private:
 };
 
 
+static void executeAfterDelay(
+        std::function< void() > functionToCall, unsigned msDelay )
+{
+    std::this_thread::sleep_for( std::chrono::milliseconds( msDelay ) );
+
+    functionToCall();
+}
+
+
 template< typename T >
 void Timer::connect( T & functionOwner, void( T::*functionName )() )
 {
@@ -51,9 +61,11 @@ template< typename T >
 void Timer::delayedFunctionCall(
         T & functionOwner, void( T::*functionName )(), unsigned msDelay )
 {
-    std::this_thread::sleep_for( std::chrono::milliseconds( msDelay) );
-
-    std::bind( functionName, &functionOwner )();
+    std::thread{
+        executeAfterDelay,
+        std::bind( functionName, &functionOwner ),
+        msDelay }
+    .detach();
 }
 
 

@@ -2,6 +2,7 @@
 
 #include "Repeater.hpp"
 #include "Hourglass.hpp"
+#include "Timer.hpp"
 
 
 using namespace hourglass;
@@ -24,16 +25,6 @@ static void joinThread( std::future< void > & future )
 }
 
 
-static void execute(
-        const std::function< void() > & methodToCall,
-        unsigned msFrequency )
-{
-    hourglass::sleep( std::chrono::milliseconds( msFrequency ) );
-
-    methodToCall();
-}
-
-
 static void repeat(
         const std::atomic_bool * repeating,
         const std::function< void() > & methodToCall,
@@ -41,7 +32,7 @@ static void repeat(
 {
     while( *repeating )
     {
-        execute( methodToCall, msFrequency );
+        executeAfterDelay( methodToCall, msFrequency );
     }
 }
 

@@ -8,8 +8,6 @@ struct test_object
 {
     test_object() : count( 0 ) {}
 
-    ~test_object(){ std::cout << "~test_object()" << std::endl; }
-
     void increment(){ std::cout << ++count << std::endl; }
 
     void functionToDelay(){
@@ -39,7 +37,11 @@ int main( int, char * [] )
 
     timer.stop();
 
+    std::cout << "Stopping timer..." << std::endl;
+
     hourglass::sleep( hourglass::milliseconds( 3000 ) );
+
+    std::cout << "Restarting timer..." << std::endl;
 
     timer.start( 500 );
 

@@ -1,21 +1,19 @@
 #include <iostream>
 
-#include "Timer.hpp"
+#include "timer.hpp"
 
 
 using namespace hourglass;
 
 
-static void notifyStartFailure()
-{
+static void notifyStartFailure() {
     std::cerr << "Reapeater::start() failed - did you call "
                  "Repeater::connect()?"
               << std::endl;
 }
 
 
-static void launchRepeater( Repeater & repeater, unsigned msFrequency )
-{
+static void launchRepeater( Repeater & repeater, unsigned msFrequency ) {
     repeater.isConnected() ?
                 repeater.launchAsync( msFrequency ) : notifyStartFailure();
 }
@@ -29,25 +27,20 @@ Timer::Timer() noexcept
 }
 
 
-Timer::~Timer()
-{
+Timer::~Timer() {
     stop();
 }
 
 
-void Timer::start( unsigned msFrequency )
-{
+void Timer::start( unsigned msFrequency ) {
     _repeater ? launchRepeater(
                     *_repeater.get(), msFrequency ) : notifyStartFailure();
 }
 
 
-void Timer::stop()
-{
-    if( _repeater )
-    {
-        if( _repeater->isRunning() )
-        {
+void Timer::stop() {
+    if( _repeater ) {
+        if( _repeater->isRunning() ) {
             _repeater->stop();
         }
     }

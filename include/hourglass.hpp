@@ -4,7 +4,7 @@
 
 #include <chrono>
 
-#include "Timer.hpp"
+#include "timer.hpp"
 
 
 namespace hourglass {

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
 
-#include "Hourglass.hpp"
+#include "hourglass.hpp"
 
 
 struct test_object
@@ -17,8 +17,7 @@ struct test_object
 };
 
 
-int main( int, char * [] )
-{
+int main( int, char * [] ) {
     hourglass::Timer timer;
 
     test_object obj;
@@ -27,7 +26,6 @@ int main( int, char * [] )
     timer.start( 500 );
 
     timer.connect( obj, &test_object::increment );
-
     timer.start( 500 );
 
     hourglass::Timer::delayedFunctionCall(
@@ -35,14 +33,12 @@ int main( int, char * [] )
 
     hourglass::sleep( hourglass::seconds( 3 ) );
 
-    timer.stop();
-
     std::cout << "Stopping timer..." << std::endl;
+    timer.stop();
 
     hourglass::sleep( hourglass::milliseconds( 3000 ) );
 
     std::cout << "Restarting timer..." << std::endl;
-
     timer.start( 500 );
 
     hourglass::sleep( hourglass::microseconds( 3000000 ) );

@@ -20,6 +20,8 @@ target_compile_options( ${PROJECT_NAME}-test
         -pthread
         -std=c++11
         -Wall
+        -Wextra
+        -Wshadow
 )
 
 target_link_libraries( ${PROJECT_NAME}-test
@@ -36,6 +38,8 @@ target_compile_options( ${PROJECT_NAME}
         -pthread
         -std=c++11
         -Wall
+        -Wextra
+        -Wshadow
 )
 
 target_link_libraries( ${PROJECT_NAME}

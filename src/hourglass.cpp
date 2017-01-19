@@ -1,4 +1,4 @@
-#include "Hourglass.hpp"
+#include "hourglass.hpp"
 
 
 std::chrono::system_clock::time_point hourglass::now()

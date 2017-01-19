@@ -4,8 +4,8 @@
 
 #include <memory>
 
-#include "Repeater.hpp"
-#include "Hourglass.hpp"
+#include "repeater.hpp"
+#include "hourglass.hpp"
 
 
 namespace hourglass {

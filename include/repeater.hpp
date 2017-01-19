@@ -17,24 +17,24 @@ public:
 
     Repeater();
 
-    void setFunction( std::function< void() > function );
+    void set_function( std::function< void() > function );
 
-    void launchAsync( unsigned msFrequency );
+    void launch_async( unsigned msFrequency );
 
     void stop();
 
-    bool isRunning() const;
+    bool is_running() const;
 
-    bool isConnected() const;
+    bool is_connected() const;
 
 
 private:
 
-    std::function< void( void ) > _function;
+    std::function< void( void ) > function_;
 
-    std::future< void > _repeaterFuture;
+    std::future< void > repeater_future_;
 
-    std::atomic_bool _repeating;
+    std::atomic_bool repeating_;
 
 };
 

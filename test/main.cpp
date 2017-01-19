@@ -28,7 +28,7 @@ int main( int, char * [] ) {
     timer.connect( obj, &test_object::increment );
     timer.start( 500 );
 
-    hourglass::Timer::delayedFunctionCall(
+    hourglass::Timer::delayed_function_call(
                 obj, &test_object::functionToDelay, 8000 );
 
     hourglass::sleep( hourglass::seconds( 3 ) );

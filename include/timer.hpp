@@ -20,7 +20,7 @@ public:
 
     ~Timer();
 
-    void start( unsigned msFrequency );
+    void start( unsigned ms_freq );
 
     void stop();
 
@@ -28,7 +28,7 @@ public:
     void connect( T & observer, void( T::* )() );
 
     template< typename T >
-    static void delayedFunctionCall(
+    static void delayed_function_call(
             T & observer, void( T::* )(), unsigned msDelay );
 
 
@@ -39,7 +39,7 @@ private:
 };
 
 
-static void executeAfterDelay(
+static void execute_after_delay(
         std::function< void() > functionToCall, unsigned msDelay )
 {
     std::this_thread::sleep_for( std::chrono::milliseconds( msDelay ) );
@@ -53,16 +53,16 @@ void Timer::connect( T & functionOwner, void( T::*functionName )() )
 {
     _repeater = std::unique_ptr< Repeater >( new Repeater );
 
-    _repeater->setFunction( std::bind( functionName, &functionOwner ) );
+    _repeater->set_function( std::bind( functionName, &functionOwner ) );
 }
 
 
 template< typename T >
-void Timer::delayedFunctionCall(
+void Timer::delayed_function_call(
         T & functionOwner, void( T::*functionName )(), unsigned msDelay )
 {
     std::thread{
-        executeAfterDelay,
+        execute_after_delay,
         std::bind( functionName, &functionOwner ),
         msDelay }
     .detach();

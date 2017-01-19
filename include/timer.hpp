@@ -40,8 +40,7 @@ private:
 
 
 static void execute_after_delay(
-        std::function< void() > functionToCall, unsigned msDelay )
-{
+        std::function< void() > functionToCall, unsigned msDelay ) {
     std::this_thread::sleep_for( std::chrono::milliseconds( msDelay ) );
 
     functionToCall();
@@ -49,8 +48,7 @@ static void execute_after_delay(
 
 
 template< typename T >
-void Timer::connect( T & functionOwner, void( T::*functionName )() )
-{
+void Timer::connect( T & functionOwner, void( T::*functionName )() ) {
     _repeater = std::unique_ptr< Repeater >( new Repeater );
 
     _repeater->set_function( std::bind( functionName, &functionOwner ) );
@@ -59,8 +57,7 @@ void Timer::connect( T & functionOwner, void( T::*functionName )() )
 
 template< typename T >
 void Timer::delayed_function_call(
-        T & functionOwner, void( T::*functionName )(), unsigned msDelay )
-{
+        T & functionOwner, void( T::*functionName )(), unsigned msDelay ) {
     std::thread{
         execute_after_delay,
         std::bind( functionName, &functionOwner ),

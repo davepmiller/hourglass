@@ -1,4 +1,4 @@
-# Hourglass
+# hourglass
 C++ Async Timer
 
 

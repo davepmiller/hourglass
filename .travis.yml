@@ -1,0 +1,19 @@
+dist: trusty
+sudo: required
+language: cpp
+compiler: gcc
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - cmake
+before_install:
+  - pip install --user cpp-coveralls
+before_script:
+  - gcc -v && g++ -v && cmake --version
+  - mkdir build && cd build && cmake .. && make
+script:
+  - ./unit_tests
+after_success:
+  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"

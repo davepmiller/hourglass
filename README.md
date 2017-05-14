@@ -1,6 +1,9 @@
+[![Build Status](https://travis-ci.org/DaveyLaser/hourglass.png)](https://travis-ci.org/DaveyLaser/hourglass)
+[![Coverage Status](https://coveralls.io/repos/github/DaveyLaser/hourglass/badge.svg?branch=master)](https://coveralls.io/github/DaveyLaser/hourglass?branch=master)
+[![License](https://img.shields.io/badge/license-%20BSD--3-blue.svg)](../master/LICENSE)
+
 # hourglass
 C++ Async Timer
-
 
 ## Install
 ```

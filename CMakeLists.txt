@@ -2,6 +2,18 @@ cmake_minimum_required( VERSION 2.8.12 FATAL_ERROR )
 
 project( hourglass )
 
+set( CMAKE_CXX_FLAGS 
+    "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage"
+)
+
+set( CMAKE_CXX_FLAGS_DEBUG 
+    "-O0 -g3"
+)
+
+set( CMAKE_CXX_FLAGS_RELEASE 
+    "-O3"
+)
+
 find_package( Threads REQUIRED )
 
 aux_source_directory( src SRC )

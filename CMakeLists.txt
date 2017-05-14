@@ -63,6 +63,7 @@ target_include_directories(
 add_executable(
     unit_tests
         test/main.cpp
+        test/hourglass_unit.cpp
 )
 
 add_dependencies( 

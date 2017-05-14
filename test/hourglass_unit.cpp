@@ -1,5 +1,8 @@
+#include <chrono>
 #include "gtest/gtest.h"
 #include "timer.hpp"
+#include "hourglass.hpp"
+
 
 TEST( Timer, start_stop )
 {
@@ -32,4 +35,12 @@ TEST( Timer, delayed_function_call )
     hourglass::Timer::delayed_function_call( o, &Observer::cb, 1 );
     usleep( 1500 );
     ASSERT_EQ( o.called, true );
+}
+
+TEST( Timer, now )
+{
+    auto start = hourglass::now();
+    auto stop = hourglass::now();
+    std::chrono::duration<double> diff = stop-start;
+    ASSERT_LT( diff.count(), 1.0 );
 }

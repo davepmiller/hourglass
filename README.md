@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/DaveyLaser/hourglass.png)](https://travis-ci.org/DaveyLaser/hourglass)
-[![Coverage Status](https://coveralls.io/repos/github/DaveyLaser/hourglass/badge.svg?branch=master?bust=1)](https://coveralls.io/github/DaveyLaser/hourglass?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/DaveyLaser/hourglass/badge.svg?branch=master)](https://coveralls.io/github/DaveyLaser/hourglass?branch=master)
 [![License](https://img.shields.io/badge/license-%20BSD--3-blue.svg)](../master/LICENSE)
 
 # hourglass

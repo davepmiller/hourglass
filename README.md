@@ -14,7 +14,27 @@ $ cmake ..
 $ make install
 ```
 
-## Preview
-Run `test/main.cpp` executable for a preview of functionality.
+## Use
 ```
-$ ./hourglass-test
+#include <iostream>
+#include "timer.hpp"
+
+struct Observer
+{
+    Observer() : count( 0 ) {}
+    int count;
+    void cb () 
+    {
+        std::cout << "Hello world, for the " << count++ << "th time!\n";
+    }
+};
+
+int main()
+{
+    Observer o;
+    hourglass::Timer t;
+    t.connect( o, &Observer::cb );
+    t.start( 200 /*ms*/ );
+    hourglass::sleep( hourglass::seconds( 1 ) );
+}
+```

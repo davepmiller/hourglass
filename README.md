@@ -15,7 +15,7 @@ $ make install
 ```
 
 ## Use
-```
+```c++
 #include <iostream>
 #include "timer.hpp"
 

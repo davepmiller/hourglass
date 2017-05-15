@@ -7,14 +7,20 @@ C++ Async Timer
 
 ## Install
 ```
-$ git clone https://github.com/DaveyLaser/Hourglass.git
-$ cd Hourglass
+$ git clone https://github.com/DaveyLaser/hourglass.git
+$ cd hourglass
 $ mkdir build && cd build
 $ cmake ..
-$ make install
+$ make
 ```
 
 ## Use
+```bash
+$ cd examples/hello
+$ mkdir build && cd build && cmake .. && make
+$ ./hello
+```
+### From example/hello
 ```c++
 #include <iostream>
 #include "timer.hpp"

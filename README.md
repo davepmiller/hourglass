@@ -14,13 +14,12 @@ $ cmake ..
 $ make
 ```
 
-## Use
+### Hello World
 ```bash
 $ cd examples/hello
 $ mkdir build && cd build && cmake .. && make
 $ ./hello
 ```
-### From example/hello
 ```c++
 #include <iostream>
 #include "timer.hpp"
